@@ -14,7 +14,7 @@ var ctx =document.getElementById('canvas'),
 		this.r=Math.random()*2+1;
 		var alpha=(Math.floor(Math.random()*10)+1)/10/2;
 		/*Math.random返回>=0<1的随机数。10个总数，从1开始*/
-		this.color = "rgba(0,0,0,"+alpha+")";
+		this.color = "rgba(100,149,237,"+alpha+")";
 	};
 		Round_item.prototype.draw = function(){
 			content.fillStyle=this.color;
