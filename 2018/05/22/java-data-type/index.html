@@ -98,90 +98,90 @@
   	</span>
   </div>
   <div class="post-content">
-  <table>
+  <h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><table>
 <thead>
 <tr>
-<th>类型</th>
-<th>字节</th>
-<th>二进制位</th>
-<th>最大值</th>
-<th>最小值</th>
-<th>默认值</th>
-<th>备注</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">字节</th>
+<th style="text-align:left">二进制位</th>
+<th style="text-align:left">最大值</th>
+<th style="text-align:left">最小值</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>byte</td>
-<td>1</td>
-<td>8</td>
-<td>127(2^7-1)</td>
-<td>-128(-2^7)</td>
-<td>0</td>
-<td>以二进制补码表示的整数</td>
+<td style="text-align:left">byte</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">127(2^7-1)</td>
+<td style="text-align:left">-128(-2^7)</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">以二进制补码表示的整数</td>
 </tr>
 <tr>
-<td>char</td>
-<td>2</td>
-<td>16</td>
-<td>65535</td>
-<td>0</td>
-<td>0</td>
-<td>单一的16位Unicode字符</td>
+<td style="text-align:left">char</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">65535</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">单一的16位Unicode字符</td>
 </tr>
 <tr>
-<td>short</td>
-<td>2</td>
-<td>16</td>
-<td>-32768(-2^15)</td>
-<td>32767(2^15-1)</td>
-<td>0</td>
-<td>以二进制补码表示的整数</td>
+<td style="text-align:left">short</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">-32768(-2^15)</td>
+<td style="text-align:left">32767(2^15-1)</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">以二进制补码表示的整数</td>
 </tr>
 <tr>
-<td>int</td>
-<td>4</td>
-<td>32</td>
-<td>-2^31</td>
-<td>2^31-1</td>
-<td>0</td>
-<td>以二进制补码表示的整数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">-2^31</td>
+<td style="text-align:left">2^31-1</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">以二进制补码表示的整数</td>
 </tr>
 <tr>
-<td>float</td>
-<td>4</td>
-<td>32</td>
-<td>~</td>
-<td>~</td>
-<td>0.0f</td>
-<td>符合IEEE754标准的浮点数</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">0.0f</td>
+<td style="text-align:left">符合IEEE754标准的浮点数</td>
 </tr>
 <tr>
-<td>long</td>
-<td>8</td>
-<td>64</td>
-<td>-2^63</td>
-<td>2^63-1</td>
-<td>0L</td>
-<td>以二进制补码表示的整数</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">64</td>
+<td style="text-align:left">-2^63</td>
+<td style="text-align:left">2^63-1</td>
+<td style="text-align:left">0L</td>
+<td style="text-align:left">以二进制补码表示的整数</td>
 </tr>
 <tr>
-<td>double</td>
-<td>8</td>
-<td>64</td>
-<td>~</td>
-<td>~</td>
-<td>0.0d</td>
-<td>符合IEEE754标准的浮点数</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">64</td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">0.0d</td>
+<td style="text-align:left">符合IEEE754标准的浮点数</td>
 </tr>
 <tr>
-<td>boolean</td>
-<td>1~4</td>
-<td>8~32</td>
-<td>~</td>
-<td>~</td>
-<td>false</td>
-<td>java规范中没有明确指出大小，依据JVM的实现可能是1或4个字节</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">1~4</td>
+<td style="text-align:left">8~32</td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">java规范中没有明确指出大小，依据JVM的实现可能是1或4个字节</td>
 </tr>
 </tbody>
 </table>
