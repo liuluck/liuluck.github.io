@@ -41,7 +41,7 @@
 		
 		<a href="https://github.com/liuluck"  title="gitHub"><i class="fa fa-code ">gitHub</i></a>
 		
-		<a href="http://quenya.cn"  title="about"><i class="fa fa-user ">about</i></a>
+		<a href="/"  title="about"><i class="fa fa-user ">about</i></a>
 		
 		
 	</div>
@@ -66,9 +66,10 @@
 
 	
 	<div class="widget-wrap">
-		<h3 class="widget-title fa fa-archive">archive_a</h3>
+		<h3 class="widget-title fa fa-archive">archives</h3>
+		<!-- <h3 class="widget-title fa fa-archive">archive_a</h3> -->
 		<div class="widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">4</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li></ul>
 		</div>
 	</div>
 
@@ -97,7 +98,32 @@
   	</span>
   </div>
   <div class="post-content">
-  <h1 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode"></a>hashcode</h1>
+  <h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>hash 又称为“散列”，将任意长度的输入，经过散列算法计算，变换成固定长度的输出，该输出就是散列值。</p>
+<ol>
+<li>如果散列表中存在和散列原始输入K相等的记录，那么K必定在f(K)的存储位置上</li>
+<li>不同K经过散列算法变换后可能得到同一个散列地址，这种现象称为碰撞(hash冲突),所以，散列值不能确定唯一的输入值。</li>
+<li>如果两个Hash值不同（前提是同一Hash算法），那么这两个Hash值对应的原始输入必定不同</li>
+</ol>
+<h3 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h3><ol>
+<li>HashCode的存在主要是为了查找的快捷性，HashCode是用来在散列存储结构中确定对象的存储地址的</li>
+<li>如果两个对象equals相等，那么这两个对象的HashCode一定也相同</li>
+<li>如果对象的equals方法被重写，那么对象的HashCode方法也尽量重写</li>
+<li>如果两个对象的HashCode相同，不代表两个对象就相同，只能说明这两个对象在散列存储结构中，存放于同一个位置</li>
+</ol>
+<p>例如：String中hash值默认是0,hashCode的实现，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ public int <span class="function"><span class="title">hashCode</span></span>() &#123;</span><br><span class="line">$        int h = <span class="built_in">hash</span>;</span><br><span class="line">$        <span class="keyword">if</span> (h == 0 &amp;&amp; value.length &gt; 0) &#123;</span><br><span class="line">$            char val[] = value;</span><br><span class="line">$            <span class="keyword">for</span> (int i = 0; i &lt; value.length; i++) &#123;</span><br><span class="line">$                h = 31 * h + val[i];</span><br><span class="line">$            &#125;</span><br><span class="line">$            <span class="built_in">hash</span> = h;</span><br><span class="line">$        &#125;</span><br><span class="line">$        <span class="built_in">return</span> h;</span><br><span class="line">$    &#125;</span><br></pre></td></tr></table></figure>
+<p>其核心就是将现有hash值×31，再加上当前字符的ascii码值。</p>
+<h4 id="equals方法被重写，为什么要重写HashCode方法？"><a href="#equals方法被重写，为什么要重写HashCode方法？" class="headerlink" title="equals方法被重写，为什么要重写HashCode方法？"></a>equals方法被重写，为什么要重写HashCode方法？</h4><p>看Object源码，更便于理解，Object中关于hashCode和equals的源码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ public native int hashCode();</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ public boolean equals(Object obj) &#123;</span><br><span class="line">$    <span class="built_in">return</span> (this == obj);</span><br><span class="line">$ &#125;</span><br></pre></td></tr></table></figure>
+<p>从代码可以知道，hashCode方法是一个本地native方法，返回的是对象引用中存储的对象的内存地址(将内存地址转换成整数),equals方法是利用 == 来比较的,也是对象的内存地址。从上边我们可以看出，hashCode方法和equals方法是一致的。也就是说，如果equals返回true，两个对象的hashCode返回值必须一样，如果equals方法返回false，hashCode可以不一样，但是这样不利于哈希表的性能，一般我们也不要这样做。重写equals方法就必须重写hashCode方法，这样才能保证一致性。</p>
+<p>假设两个对象，重写了其equals方法，其相等条件是属性相等，就返回true。如果不重写hashCode方法，其返回的依然是两个对象的内存地址值，必然不相等。这就出现了equals方法相等，但是hashCode不相等的情况。这显然不符合hashcode的规则。在集合框架中，这种情况会导致严重的问题，以后再举例说明。</p>
+<h4 id="重写hashCode-的原则"><a href="#重写hashCode-的原则" class="headerlink" title="重写hashCode()的原则"></a>重写hashCode()的原则</h4><ol>
+<li>同一个对象多次调用hashCode方法应该返回相同的值；</li>
+<li>当两个对象通过equals方法比较返回true时，这两个对象的hashCode应该返回相等的（int）值；</li>
+<li>对象中用作equals方法比较标准的Filed(成员变量（类属性）)，都应该用来计算hashCode值；</li>
+<li>计算hashCode值的方法：请参考String中hashCode的实现。</li>
+</ol>
+
 	</div>
 </article>
 
@@ -111,7 +137,7 @@
 	
 </div>
 <div class="bottom-info">
-	&copy; 2018 Liu ligang<br>
+	&copy; 2018 Liu LG<br>
 	<!-- powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
 	theme <a href="https://github.com/liuluck" target="_blank">zhl</a> -->
 </div>
