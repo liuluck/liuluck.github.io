@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,inital-scale=1,user-scalable=no">
-  <title>int &amp; Integer [ Just do IT ]</title>
+  <title>Spring 注解 [ Just do IT ]</title>
   <!-- bootstrapcss文件 -->
  <!--  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <!--   <link rel="stylesheet" href="/css/zhl.css">
@@ -80,17 +80,17 @@
     
 <article id="post">
 	<div class="post-title">
-  <h1>int &amp; Integer</h1>
+  <h1>Spring 注解</h1>
   	</div>
   <div class="page-meta">
   	<span class="fa-wrap">
   		<i class="fa fa-clock-o"></i>
-  		<span class="date-meta">2018-05-21</span>
+  		<span class="date-meta">2018-09-26</span>
   	</span>
   	<span class="fa-wrap">
   		
   		<i class="fa fa-tags"></i>
-  		<span class="tags-meta">java</span>
+  		<span class="tags-meta">Spring boot</span>
   		
   	</span>
   	<span class="fa-wrap">
@@ -98,13 +98,14 @@
   	</span>
   </div>
   <div class="post-content">
-  <p>int 是java基本数据类型之一，表示整数。有符号，占用4个字节，32个二进制位;<br>默认值：0;<br>最小值：-2,147,483,648（-2^31）;<br>最大值：2,147,483,647（2^31 - 1）;<br>封装类：Integer<br>hashCode:即本身数值</p>
-<p>Integer是int的封装类，继承了Number抽象类，并且实现了Comparable接口，提供多个方便使用的方法，如：</p>
-<h4 id="转二进制"><a href="#转二进制" class="headerlink" title="转二进制"></a>转二进制</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer max = new Integer(2147483647)</span><br><span class="line">Integer.toBinaryString(max)</span><br></pre></td></tr></table></figure>
-<h4 id="转八进制"><a href="#转八进制" class="headerlink" title="转八进制"></a>转八进制</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer max = new Integer(2147483647)</span><br><span class="line">Integer.toOctalString(max)</span><br></pre></td></tr></table></figure>
-<h3 id="java-8-新加方法"><a href="#java-8-新加方法" class="headerlink" title="java 8 新加方法"></a>java 8 新加方法</h3><h4 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static int sum(int a, int b) &#123;</span><br><span class="line">   <span class="built_in">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="求最大值"><a href="#求最大值" class="headerlink" title="求最大值"></a>求最大值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static int max(int a, int b) &#123;</span><br><span class="line">  <span class="built_in">return</span> Math.max(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="求最小值"><a href="#求最小值" class="headerlink" title="求最小值"></a>求最小值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static int min(int a, int b) &#123;</span><br><span class="line">   <span class="built_in">return</span> Math.min(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <p>记录常用注解</p>
+<h2 id="Autowired、-Inject和-Resource的区别"><a href="#Autowired、-Inject和-Resource的区别" class="headerlink" title="@Autowired、@Inject和@Resource的区别"></a>@Autowired、@Inject和@Resource的区别</h2><h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><p>@Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE})<br>@Retention(RetentionPolicy.RUNTIME)<br>@Documented<br>public @interface Autowired {<br>    boolean required() default true;<br>}</p>
+<p>@Autowired是Spring提供的注解，通过‘AutowiredAnnotationBeanPostProcessor’ 类实现的依赖注入。</p>
+<h3 id="Inject"><a href="#Inject" class="headerlink" title="@Inject"></a>@Inject</h3><p>@Target({ METHOD, CONSTRUCTOR, FIELD })<br>@Retention(RUNTIME)<br>@Documented<br>public @interface Inject {}</p>
+<p>@Inject是jsr330中的规范，通过‘AutowiredAnnotationBeanPostProcessor’ 类实现的依赖注入，与@Autowired可以互换。</p>
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><p>@Target({TYPE, FIELD, METHOD})<br>@Retention(RUNTIME)<br>public @interface Resource {<br>    String name() default “”;<br>    String lookup() default “”;<br>    Class&lt;?&gt; type() default java.lang.Object.class;<br>    enum AuthenticationType {<br>            CONTAINER,<br>            APPLICATION<br>    }<br>    AuthenticationType authenticationType() default AuthenticationType.CONTAINER;<br>    boolean shareable() default true;<br>    String mappedName() default “”;<br>    String description() default “”;<br>}<br>@Resource是jsr250规范的实现，‘@Resource’通过 ‘CommonAnnotationBeanPostProcessor’ 类实现依赖注入。</p>
+<h3 id="看源码我们知道："><a href="#看源码我们知道：" class="headerlink" title="看源码我们知道："></a>看源码我们知道：</h3><p>@Autowired可以用于构造方法、一般方法、参数、成员变量和注解类型；<br>@Autowired有个属性为required，可以配置为false，如果配置为false之后，当没有找到相应bean的时候，系统不会抛错；<br>@Inject可以用于构造方法、一般方法和成员变量；<br>@Resource可以用于类、接口、枚举、成员变量和一般方法。</p>
+
 	</div>
 </article>
 
