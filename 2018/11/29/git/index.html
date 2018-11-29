@@ -99,19 +99,17 @@
   </div>
   <div class="post-content">
   <p>记录常用git用法</p>
-<h3 id="Tag的使用"><a href="#Tag的使用" class="headerlink" title="Tag的使用"></a>Tag的使用</h3><h4 id="1-当前分支打Tag"><a href="#1-当前分支打Tag" class="headerlink" title="1.当前分支打Tag"></a>1.当前分支打Tag</h4><p>切换到需要打Tag的分支<br>使用 git tag <tag name="">命令<br>如：git tag v1.0<br>回车后可以使用 git tag 命令查看所有tag<br>$ git tag</tag></p>
-<p>v0.8<br>v0.9<br>v1.0<br>(END)</p>
+<h3 id="Tag的使用"><a href="#Tag的使用" class="headerlink" title="Tag的使用"></a>Tag的使用</h3><h4 id="1-当前分支打Tag"><a href="#1-当前分支打Tag" class="headerlink" title="1.当前分支打Tag"></a>1.当前分支打Tag</h4><p>切换到需要打Tag的分支<br>使用 git tag <tag name="">命令<br>如：git tag v1.0<br>回车后可以使用 git tag 命令查看所有tag<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br><span class="line"></span><br><span class="line">v0.8</span><br><span class="line">v0.9</span><br><span class="line">v1.0</span><br><span class="line">(END)</span><br></pre></td></tr></table></figure></tag></p>
 <h4 id="2-指定commit打Tag"><a href="#2-指定commit打Tag" class="headerlink" title="2.指定commit打Tag"></a>2.指定commit打Tag</h4><p>Tag默认打在最后一次commit上，若果需要在某次历史记录上打，需要找到对应的commit id</p>
-<p>$ git log –pretty=oneline –abbrev-commit</p>
-<p>9b8b62a22 (tag: v0.9) 持卡人订单查询跳转到订单展示页<br>9659100f5 调整定时任务时间、添加订单号<br>59f17132c (tag: v0.8) 调用图云2<br>b8864ea1c 调用图云</p>
-<p>这里显示已经打过的两个tag，若果想在commit 9659100f5上添加一个名为“v0.81”的tag<br>只需使用命令<br>$ git tag v0.81 9659100f5</p>
-<p>再次查看所有tag,<br>$ git tag</p>
-<p>v0.8<br>v0.81<br>v0.9<br>v1.0<br>(END)</p>
-<h3 id="3-创建带有注释的标签"><a href="#3-创建带有注释的标签" class="headerlink" title="3.创建带有注释的标签"></a>3.创建带有注释的标签</h3><p>用-a指定标签名，-m指定说明文字：<br>$ git tag -a v0.7 -m “add tuyun for ctrip” b8864ea1c</p>
-<h3 id="4-查看标签信息"><a href="#4-查看标签信息" class="headerlink" title="4.查看标签信息"></a>4.查看标签信息</h3><p>标签并不是按时间顺序列出，而是按字母排序的。可以使用 git show <tagname>查看标签信息：<br>$ git show v0.7</tagname></p>
-<p>tag v0.7<br>Tagger: admin <a href="mailto:&#97;&#100;&#x6d;&#105;&#x6e;&#x40;&#x79;&#101;&#97;&#104;&#46;&#110;&#x65;&#x74;">&#97;&#100;&#x6d;&#105;&#x6e;&#x40;&#x79;&#101;&#97;&#104;&#46;&#110;&#x65;&#x74;</a><br>Date:   Thu Nov 29 10:42:25 2018 +0800</p>
-<font color="red">add tuyun for ctrip</font>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git log --pretty=oneline --abbrev-commit</span><br><span class="line"></span><br><span class="line">9b8b62a22 (tag: v0.9) 持卡人订单查询跳转到订单展示页</span><br><span class="line">9659100f5 调整定时任务时间、添加订单号</span><br><span class="line">59f17132c (tag: v0.8) 调用图云2</span><br><span class="line">b8864ea1c 调用图云</span><br></pre></td></tr></table></figure>
+<p>这里显示已经打过的两个tag，若果想在commit 9659100f5上添加一个名为“v0.81”的tag<br>只需使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v0.81 9659100f5</span><br></pre></td></tr></table></figure>
+<p>再次查看所有tag,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br><span class="line"></span><br><span class="line">v0.8</span><br><span class="line">v0.81</span><br><span class="line">v0.9</span><br><span class="line">v1.0</span><br><span class="line">(END)</span><br></pre></td></tr></table></figure>
+<h3 id="3-创建带有注释的标签"><a href="#3-创建带有注释的标签" class="headerlink" title="3.创建带有注释的标签"></a>3.创建带有注释的标签</h3><p>用-a指定标签名，-m指定说明文字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a v0.7 -m &quot;add tuyun for ctrip&quot; b8864ea1c</span><br></pre></td></tr></table></figure>
+<h3 id="4-查看标签信息"><a href="#4-查看标签信息" class="headerlink" title="4.查看标签信息"></a>4.查看标签信息</h3><p>标签并不是按时间顺序列出，而是按字母排序的。可以使用 git show <tagname>查看标签信息：</tagname></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git show v0.7</span><br><span class="line"></span><br><span class="line">tag v0.7</span><br><span class="line">Tagger: admin &lt;admin@yeah.net&gt;</span><br><span class="line">Date:   Thu Nov 29 10:42:25 2018 +0800</span><br><span class="line"></span><br><span class="line">&lt;font color=red&gt;add tuyun for ctrip&lt;/font&gt;</span><br></pre></td></tr></table></figure>
 <p>红色字体是标签注释</p>
 
 	</div>
