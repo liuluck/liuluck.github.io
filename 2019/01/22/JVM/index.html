@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,inital-scale=1,user-scalable=no">
-  <title>Archives: 5/2018: 2018 [ Just do IT ]</title>
+  <title>JVM [ Just do IT ]</title>
   <!-- bootstrapcss文件 -->
  <!--  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <!--   <link rel="stylesheet" href="/css/zhl.css">
@@ -77,35 +77,34 @@
 
     </div>
     <div id="content-right" class="col-md-8">
-    <div id="archive">
-  
-<h2>5/2018</h2>
+    
+<article id="post">
+	<div class="post-title">
+  <h1>JVM</h1>
+  	</div>
+  <div class="page-meta">
+  	<span class="fa-wrap">
+  		<i class="fa fa-clock-o"></i>
+  		<span class="date-meta">2019-01-22</span>
+  	</span>
+  	<span class="fa-wrap">
+  		
+  		<i class="fa fa-tags"></i>
+  		<span class="tags-meta">JVM</span>
+  		
+  	</span>
+  	<span class="fa-wrap">
+  		
+  	</span>
+  </div>
+  <div class="post-content">
+  <p>JVM 参数</p>
+<h4 id="1-UseCompressedOops"><a href="#1-UseCompressedOops" class="headerlink" title="1.+UseCompressedOops"></a>1.+UseCompressedOops</h4><p>压缩普通指针：<br>32位平台JVM寻址宽度为32，64位平台寻址宽度为64，JVM消耗的内存别32位大出至少1倍；<br>对于从32平台迁移到64位平台的应用来说，多出一倍内存占用；<br>从JDK1.6 update14开始，64 bit JVM正式支持了 -XX:+UseCompressedOops 这个可以压缩指针，起到节约内存占用的作用；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseCompressedOops</span><br></pre></td></tr></table></figure>
 
+	</div>
+</article>
 
-           
-        <a href="/2018/05/21/hashmap/" taget="_blank" class="archive-item">
-        <span>
-          hashmap
-        </span>
-        <time datetime="2018-05-21T11:18:56.000Z">
-          2018-05-21
-        </time>
-        </a>
-      
-  
-           
-        <a href="/2018/05/21/int/" taget="_blank" class="archive-item">
-        <span>
-          int &amp; Integer
-        </span>
-        <time datetime="2018-05-21T11:01:34.000Z">
-          2018-05-21
-        </time>
-        </a>
-      
-  
-  
-</div>
 
 
     </div>
