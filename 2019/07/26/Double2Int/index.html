@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,inital-scale=1,user-scalable=no">
-  <title>今天发版 [ Just do IT ]</title>
+  <title>java 中 Double类型转int类型（金额元转分） [ Just do IT ]</title>
   <!-- bootstrapcss文件 -->
  <!--  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <!--   <link rel="stylesheet" href="/css/zhl.css">
@@ -80,17 +80,17 @@
     
 <article id="post">
 	<div class="post-title">
-  <h1>今天发版</h1>
+  <h1>java 中 Double类型转int类型（金额元转分）</h1>
   	</div>
   <div class="page-meta">
   	<span class="fa-wrap">
   		<i class="fa fa-clock-o"></i>
-  		<span class="date-meta">2018-11-01</span>
+  		<span class="date-meta">2019-07-26</span>
   	</span>
   	<span class="fa-wrap">
   		
   		<i class="fa fa-tags"></i>
-  		<span class="tags-meta">mark</span>
+  		<span class="tags-meta">java</span>
   		
   	</span>
   	<span class="fa-wrap">
@@ -98,7 +98,12 @@
   	</span>
   </div>
   <div class="post-content">
-  <h4 id="连续加班第4天"><a href="#连续加班第4天" class="headerlink" title="连续加班第4天"></a>连续加班第4天</h4><p>一个内部报销系统<br>7个后端3个前端一个op一大群功能顾问实习生<br>烂到没朋友<br>写每一行代码都心惊胆战<br>好烦噢</p>
+  <p>从平台A将单据传到平台B,平台A中使用了Double类型的金额，保留2位小数；<br>平台B中使用int类型存储金额的分值，如：<br>平台A金额:120.35<br>平台B金额：12035<br>平台间接口约定使用分值传输，这是背景。<br>问题：平台A使用 （int）（amount*100）转换，形如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expenseReportInvoiceInfo.setTaxAmount((int)(invoice.getTaxAmount()*100));</span><br></pre></td></tr></table></figure>
+<p>发现，在平台A金额为1288.36，传到平台B后变成128835.<br>问题在于 Double类型数值*100后，精度丢失</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">double a = 1288.36D;</span><br><span class="line">System.out.println(a*100);</span><br></pre></td></tr></table></figure>
+<p>发现打印结果为：<br>128835.99999999999<br>此时，强制类型转换为int,会丢失小数点后的部分，办成128835<br>更改为如下方式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private int amountDouble2Int(Double amount)&#123;</span><br><span class="line">        int amountInt = 0;</span><br><span class="line">        <span class="keyword">if</span>(amount == null)&#123;</span><br><span class="line">            <span class="built_in">return</span> amountInt</span><br><span class="line">        &#125;</span><br><span class="line">        //避免数额过大时，变成科学计数法，去掉所有“，”</span><br><span class="line">        String amountString = DecimalFormat.getInstance().format(amount).replaceAll(<span class="string">","</span>, <span class="string">""</span>);</span><br><span class="line">        //避免小数为数过多时，造成数据错误，只取小数点后两位</span><br><span class="line">        String substring = amountString.substring(0, amountString.indexOf(<span class="string">"."</span>) + 3);</span><br><span class="line">        //过滤调小数点“.”</span><br><span class="line">        StringBuffer amountSb = new StringBuffer();</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; substring.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (substring.charAt(i) != <span class="string">'.'</span>) &#123;</span><br><span class="line">                amountSb.append(substring.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        amountInt = Integer.parseInt(amountSb.toString());</span><br><span class="line">        <span class="built_in">return</span> amountInt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 	</div>
 </article>
